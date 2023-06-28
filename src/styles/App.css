@@ -1,7 +1,7 @@
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  padding: 10px 80px 10px 80px;
+  padding: 10px 80px 10px 80px !important;
   background-color: #F1F3FF !important;
 }
 
@@ -12,11 +12,11 @@
 
 .hero-container{
   padding-top:20px;
-  background-color: #F1F3FF;
+  background-color: #F1F3FF !important;
 }
 
 .hero-content-section{
-  padding: 50px 60px 0px 80px;
+  padding: 50px 60px 0px 80px !important;
 }
 
 .hero-content-section h1{
@@ -31,19 +31,24 @@
   padding: 0 !important;
 }
 
+.search-section{
+  background-color: red;
+  min-height: 400px;
+}
+
 @media only screen and (max-width: 600px) {
   .navbar-container {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px !important;
   }
 
   .hero-content-section{
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 0 20px !important;
   }
 
   .hero-image-section{
-    margin-top: 20px;
+    margin-top: 40px !important;
   }
   
   .image-car{
