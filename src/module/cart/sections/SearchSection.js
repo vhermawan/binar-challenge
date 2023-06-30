@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Container, Input, Label, FormGroup, Button, Col, Row, Card, CardBody, CardTitle, CardText } from "reactstrap";
 import { API } from "../../../common/API";
 
@@ -190,37 +190,39 @@ export default function SearchSection(){
           <Row>
             {data.map(car => {
               return (
-                <Col md={4}>
-                <Card
-                    style={{
-                      marginTop:'30px',
-                    }}
-                  >
-                    <img
-                      alt={car.name}
-                      src={car.image}
-                    />
-                    <CardBody>
-                      <CardTitle tag="h5">
-                        {car.name}
-                      </CardTitle>
-                      <CardText>
-                        {formatToIDR(car.price)} / hari
-                      </CardText>
-                      <CardText>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                      </CardText>
-                      <Button 
-                        color="success" 
-                        style={{width:"100%"}}
-                        onClick={()=>console.log(car.id)}
-                      >
-                        Pilih Mobil
-                      </Button>
-                    </CardBody>
-                  </Card>
-                </Col>
+                <Fragment key={car.id}>
+                  <Col md={4}>
+                    <Card
+                      style={{
+                        marginTop:'30px',
+                      }}
+                    >
+                      <img
+                        alt={car.name}
+                        src={car.image}
+                      />
+                      <CardBody>
+                        <CardTitle tag="h5">
+                          {car.name}
+                        </CardTitle>
+                        <CardText>
+                          {formatToIDR(car.price)} / hari
+                        </CardText>
+                        <CardText>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        </CardText>
+                        <Button 
+                          color="success" 
+                          style={{width:"100%"}}
+                          onClick={()=>console.log(car.id)}
+                        >
+                          Pilih Mobil
+                        </Button>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                </Fragment>
               )
             })}
           </Row>
