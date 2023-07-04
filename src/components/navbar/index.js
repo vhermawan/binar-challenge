@@ -19,7 +19,7 @@ function NavbarComponent(props) {
 
   return (
     <div>
-      <Navbar color="light" light className='navbar-container' expand="md">
+      <Navbar light className='navbar-container' expand="md">
         <NavbarBrand href="/">Rental Car</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} />
         <Collapse navbar className='navbar-section'> 

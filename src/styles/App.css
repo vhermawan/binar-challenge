@@ -1,7 +1,7 @@
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  padding: 10px 80px 10px 80px;
+  padding: 10px 80px 10px 80px !important;
   background-color: #F1F3FF !important;
 }
 
@@ -12,11 +12,11 @@
 
 .hero-container{
   padding-top:20px;
-  background-color: #F1F3FF;
+  background-color: #F1F3FF !important;
 }
 
 .hero-content-section{
-  padding: 50px 60px 0px 80px;
+  padding: 50px 60px 0px 80px !important;
 }
 
 .hero-content-section h1{
@@ -31,19 +31,69 @@
   padding: 0 !important;
 }
 
+.image-car{
+  z-index: 1;
+}
+
+.search-card{
+  background-color: white;
+  min-height: 106px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.search-card-section{
+  position: absolute;
+  margin-top: -50px !important; 
+  z-index: 99 !important;
+  border-radius: 10px;
+  min-height: 156px;
+}
+
+.search-card-form {
+  padding: 0px 40px 0 40px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 !important;
+}
+
+.input-form{
+  width: 208px;
+}
+
+select.opt option:hover {
+  /* box-shadow: 0 0 10px 100px #1882A8 inset; */
+  background-color: red !important;
+}
+
+.button-submit-search{
+  margin-top: 13px;
+}
+
+.display-car-section{
+  margin-top: 50px;
+  padding: 0px 40px 0 40px;
+  margin-bottom: 50px;
+}
+
 @media only screen and (max-width: 600px) {
   .navbar-container {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px !important;
   }
 
   .hero-content-section{
-    padding: 20px 20px 0 20px;
+    padding: 20px 20px 0 20px !important;
   }
 
   .hero-image-section{
-    margin-top: 20px;
+    margin-top: 40px !important;
   }
   
   .image-car{

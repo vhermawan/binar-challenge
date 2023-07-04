@@ -1,11 +1,11 @@
 import './styles/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Hero from './module/hero';
+import Routers from './common/router/router';
 
 function App() {
   return (
     <>
-      <Hero />
+      <Routers />
     </>
   );
 }
