@@ -36,6 +36,9 @@ function NavbarComponent(props) {
             <NavItem>
               <NavLink href="FAQ">FAQ</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/cart/">Cart</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
         <Offcanvas toggle={toggleNavbar} isOpen={collapsed} direction='end'>
@@ -56,6 +59,9 @@ function NavbarComponent(props) {
               <NavItem>
                 <NavLink href="FAQ">FAQ</NavLink>
               </NavItem>
+              <NavItem>
+              <NavLink href="/cart/">Cart</NavLink>
+            </NavItem>
             </Nav>
           </OffcanvasBody>
         </Offcanvas>

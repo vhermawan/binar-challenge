@@ -1,3 +1,41 @@
+
+
+
+
+.cta_banner{
+  background-color: darkblue;
+}
+
+.social-container {
+  padding: 0px 0px;
+}
+
+a.social {
+  margin: 0 0.5rem;
+  transition: transform 250ms;
+  display: inline-block;
+}
+
+a.social:hover {
+  transform: translateY(-2px);
+}
+
+a.youtube {
+  color: #eb3223;
+}
+
+a.facebook {
+  color: #4968ad;
+}
+
+a.twitter {
+  color: #49a1eb;
+}
+
+a.instagram {
+  color: black;
+}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -86,6 +124,7 @@ select.opt option:hover {
     display: flex;
     justify-content: space-between;
     padding: 10px !important;
+   
   }
 
   .hero-content-section{
@@ -100,4 +139,33 @@ select.opt option:hover {
     width: 98vw;
     float: right;
   }
+}
+
+
+
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+      .hero-content-section{
+        width: 100%;
+      }
+
+      .hero-image-section{
+        width: 100%;
+      }
+
+  }
+
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .example {background: orange;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .example {background: pink;}
 }

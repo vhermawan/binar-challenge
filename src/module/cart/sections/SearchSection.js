@@ -13,12 +13,21 @@ export default function SearchSection(){
 
   const fetchData = () => {
     const params = `name=${nameCar}&category=${category}&isRented=${isRented}&${mappingPrice(price)}`
+
     API.get(`admin/v2/car?${params}&page=1&pageSize=10`).then(res=>{
       setData(res.data.cars)
     }).catch(err =>{
       console.log('err:', err)
     }).finally(()=>{
       setIsLoading(false)
+    })
+  }
+
+  const fetchDataDetail = (id) => {
+    API.get(`admin/car/${id}`).then(res=>{
+
+    }).catch((err)=>{
+      
     })
   }
 
