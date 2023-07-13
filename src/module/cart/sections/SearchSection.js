@@ -10,6 +10,7 @@ export default function SearchSection(){
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSubmitted, setIsSubmited] = useState(false)
+  const [dataDetail, setDataDetail] = useState(null)
 
   const fetchData = () => {
     const params = `name=${nameCar}&category=${category}&isRented=${isRented}&${mappingPrice(price)}`
@@ -22,6 +23,17 @@ export default function SearchSection(){
     })
   }
 
+  const fetchDataDetail = (id) => {
+    setIsLoading(true)
+    API.get(`admin/car/${id}`).then((res)=>{
+      setDataDetail(res.data)
+    }).catch((err)=> {
+      console.error(err)
+    }).finally(()=>{
+      setIsLoading(false)
+    })
+  }
+ 
   const mappingPrice = (price) => {
     switch(price){
       case 'low':
@@ -41,8 +53,7 @@ export default function SearchSection(){
     return `${'Rp '}${parsed}`;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setIsSubmited(true)
     setIsLoading(true)
 
@@ -165,6 +176,7 @@ export default function SearchSection(){
                 onClick={()=>{
                   setIsSubmited(false)
                   setData([])
+                  setDataDetail(null)
                 }}
                 >
                 Edit
@@ -183,51 +195,60 @@ export default function SearchSection(){
         </Row>
       </section>
 
-      <section className="display-car-section">
-        {isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
-          <Row>
-            {data.map(car => {
-              return (
-                <Fragment key={car.id}>
-                  <Col md={4}>
-                    <Card
-                      style={{
-                        marginTop:'30px',
-                      }}
-                    >
-                      <img
-                        alt={car.name}
-                        src={car.image}
-                      />
-                      <CardBody>
-                        <CardTitle tag="h5">
-                          {car.name}
-                        </CardTitle>
-                        <CardText>
-                          {formatToIDR(car.price)} / hari
-                        </CardText>
-                        <CardText>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        </CardText>
-                        <Button 
-                          color="success" 
-                          style={{width:"100%"}}
-                          onClick={()=>console.log(car.id)}
-                        >
-                          Pilih Mobil
-                        </Button>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Fragment>
-              )
-            })}
-          </Row>
-        )}
-      </section>
+      {!dataDetail && 
+        <section className="display-car-section">
+          {isLoading ? (
+            <h1>Loading...</h1>
+          ) : (
+            <Row>
+              {data.map(car => {
+                return (
+                  <Fragment key={car.id}>
+                    <Col md={4}>
+                      <Card
+                        style={{
+                          marginTop:'30px',
+                        }}
+                      >
+                        <img
+                          alt={car.name}
+                          src={car.image}
+                        />
+                        <CardBody>
+                          <CardTitle tag="h5">
+                            {car.name}
+                          </CardTitle>
+                          <CardText>
+                            {formatToIDR(car.price)} / hari
+                          </CardText>
+                          <CardText>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                          </CardText>
+                          <Button 
+                            color="success" 
+                            style={{width:"100%"}}
+                            onClick={()=>fetchDataDetail(car.id)}
+                          >
+                            Pilih Mobil
+                          </Button>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                  </Fragment>
+                )
+              })}
+            </Row>
+          )}
+        </section>
+      }
+
+      {dataDetail && 
+        <section id="detail-car" style={{marginBottom:"100px"}}>
+          <div>Nama mobil: {dataDetail.name}</div>
+          {formatToIDR(dataDetail.price)}
+        </section>
+      }
     </Container>
   )
 }
