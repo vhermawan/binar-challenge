@@ -1,36 +1,25 @@
 import { Fragment, useState } from "react";
 import { Container, Input, Label, FormGroup, Button, Col, Row, Card, CardBody, CardTitle, CardText } from "reactstrap";
 import { API } from "../../../common/API";
+import { connect } from "react-redux";
+import { setData } from "../../../common/redux/actions/car";
 
-export default function SearchSection(){
+function SearchSection(props){
   const [nameCar, setNameCar]= useState('')
   const [category, setCategory] = useState('')
   const [isRented, setIsRented] = useState(false)
   const [price, setPrice] = useState('')
-  const [data, setData] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
   const [isSubmitted, setIsSubmited] = useState(false)
   const [dataDetail, setDataDetail] = useState(null)
 
-  const fetchData = () => {
-    const params = `name=${nameCar}&category=${category}&isRented=${isRented}&${mappingPrice(price)}`
-    API.get(`admin/v2/car?${params}&page=1&pageSize=10`).then(res=>{
-      setData(res.data.cars)
-    }).catch(err =>{
-      console.log('err:', err)
-    }).finally(()=>{
-      setIsLoading(false)
-    })
-  }
+  console.log('props', props.dataCars.cars)
 
   const fetchDataDetail = (id) => {
-    setIsLoading(true)
     API.get(`admin/car/${id}`).then((res)=>{
       setDataDetail(res.data)
     }).catch((err)=> {
       console.error(err)
     }).finally(()=>{
-      setIsLoading(false)
     })
   }
  
@@ -55,9 +44,13 @@ export default function SearchSection(){
 
   const handleSubmit = () => {
     setIsSubmited(true)
-    setIsLoading(true)
-
-    fetchData();
+    const parameter = {
+      name: nameCar,
+      category,
+      isRented,
+      price: mappingPrice(price)
+    }
+    props.fetchData(parameter);
   }
 
   return (
@@ -197,11 +190,11 @@ export default function SearchSection(){
 
       {!dataDetail && 
         <section className="display-car-section">
-          {isLoading ? (
+          {props.dataCars.loading ? (
             <h1>Loading...</h1>
           ) : (
             <Row>
-              {data.map(car => {
+              {props.dataCars.cars.map(car => {
                 return (
                   <Fragment key={car.id}>
                     <Col md={4}>
@@ -252,3 +245,15 @@ export default function SearchSection(){
     </Container>
   )
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (params) => dispatch(setData(params))
+  }
+}
+
+const mapStateToProps = state => ({
+  dataCars: state.cars
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchSection)

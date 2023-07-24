@@ -3,8 +3,6 @@ import React from "react"
 import { actionSetIdUser } from "../../../common/redux/actions/person";
 
 function Person(props){
-
-  console.log('props', props.data)
   return(
     <>
       Person 
@@ -16,7 +14,7 @@ function Person(props){
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setIdUser: (payload) => dispatch(actionSetIdUser(payload)),
+    setIdUser: (payload) => dispatch(actionSetIdUser(payload))
   }
 }
 
