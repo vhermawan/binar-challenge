@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Container, Input, Label, FormGroup, Button, Col, Row, Card, CardBody, CardTitle, CardText } from "reactstrap";
 import { API } from "../../../common/API";
 import { connect } from "react-redux";
-import { setData } from "../../../common/redux/actions/car";
+import { actionStartGetData, setData, setDataDetail } from "../../../common/redux/actions/car";
 
 function SearchSection(props){
   const [nameCar, setNameCar]= useState('')
@@ -12,16 +12,15 @@ function SearchSection(props){
   const [isSubmitted, setIsSubmited] = useState(false)
   const [dataDetail, setDataDetail] = useState(null)
 
-  console.log('props', props.dataCars.cars)
-
-  const fetchDataDetail = (id) => {
-    API.get(`admin/car/${id}`).then((res)=>{
-      setDataDetail(res.data)
-    }).catch((err)=> {
-      console.error(err)
-    }).finally(()=>{
-    })
-  }
+  // const fetchDataDetail = (id) => {
+  //   API.get(`admin/car/${id}`).then((res)=>{
+  //     setDataDetail(res.data)
+  //     props.setData(res.data)
+  //   }).catch((err)=> {
+  //     console.error(err)
+  //   }).finally(()=>{
+  //   })
+  // }
  
   const mappingPrice = (price) => {
     switch(price){
@@ -221,7 +220,7 @@ function SearchSection(props){
                           <Button 
                             color="success" 
                             style={{width:"100%"}}
-                            onClick={()=>fetchDataDetail(car.id)}
+                            onClick={()=>props.fetchDataDetail(car.id)}
                           >
                             Pilih Mobil
                           </Button>
@@ -248,7 +247,8 @@ function SearchSection(props){
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (params) => dispatch(setData(params))
+    fetchData: (params) => dispatch(setData(params)),
+    fetchDataDetail: (id) => dispatch(setDataDetail(id))
   }
 }
 

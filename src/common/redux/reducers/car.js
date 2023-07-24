@@ -24,6 +24,11 @@ export default function CarReducer(state= initialState, action){
         ...state,
         cars: action.data
       }
+    case actionType.SET_DETAIL_DATA:
+      return{
+        ...state,
+        detailCar: action.data
+      }
     default:
       return state
   }
