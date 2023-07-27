@@ -14,11 +14,6 @@ export const actionSetData = (data) => ({
   data
 });
 
-export const actionSetDataDetail = (data) => ({
-  type: actionType.SET_DETAIL_DATA,
-  data
-})
-
 export const setData = (params) => async (dispatch) => {
   dispatch(actionStartGetData()) //membuat loading jadi true
   const parameter = `name=${params.name}&category=${params.category}&isRented=${params.isRented}&${params.price}`
@@ -29,15 +24,4 @@ export const setData = (params) => async (dispatch) => {
     console.error('err', error)
   }
   dispatch(actionFinishGetData()) //membuat loading jadi false
-}
-
-export const setDataDetail = (id) = async (dispatch) => {
-  dispatch(actionStartGetData()) //membuat loading jadi true
-  try {
-    const response = await API.get(`admin/v2/car?${id}&page=1&pageSize=10`)
-    dispatch(actionSetDataDetail(response.data.car))
-  } catch (error) {
-    console.error('err', error)
-  }
-  dispatch(actionFinishGetData())
 }

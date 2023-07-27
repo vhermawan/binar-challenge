@@ -1,8 +1,7 @@
 import { Fragment, useState } from "react";
 import { Container, Input, Label, FormGroup, Button, Col, Row, Card, CardBody, CardTitle, CardText } from "reactstrap";
-import { API } from "../../../common/API";
 import { connect } from "react-redux";
-import { actionStartGetData, setData, setDataDetail } from "../../../common/redux/actions/car";
+import { setData } from "../../../common/redux/actions/car";
 
 function SearchSection(props){
   const [nameCar, setNameCar]= useState('')
@@ -247,8 +246,7 @@ function SearchSection(props){
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (params) => dispatch(setData(params)),
-    fetchDataDetail: (id) => dispatch(setDataDetail(id))
+    fetchData: (params) => dispatch(setData(params))
   }
 }
 
