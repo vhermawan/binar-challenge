@@ -1,10 +1,10 @@
-import Layout from "../../components/layout";
+import Layout from '../../components/layout';
 // import AdvancetoolSection from "./sections/AdvanceToolSection";
-import ChartSection from "./sections/ChartSection";
-import HeroSection from "./sections/HeroSection";
+import ChartSection from './sections/ChartSection';
+import HeroSection from './sections/HeroSection';
 // import PersonSection from "./sections/PersonSection";
 
-export default function Hero(){
+export default function Hero() {
   return (
     <Layout>
       <HeroSection />
@@ -12,5 +12,5 @@ export default function Hero(){
       {/* <AdvancetoolSection /> */}
       {/* <PersonSection /> */}
     </Layout>
-  )
+  );
 }

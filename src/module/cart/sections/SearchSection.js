@@ -1,15 +1,27 @@
-import { Fragment, useState } from "react";
-import { Container, Input, Label, FormGroup, Button, Col, Row, Card, CardBody, CardTitle, CardText } from "reactstrap";
-import { connect } from "react-redux";
-import { setData } from "../../../common/redux/actions/car";
+import { Fragment, useState } from 'react';
+import {
+  Container,
+  Input,
+  Label,
+  FormGroup,
+  Button,
+  Col,
+  Row,
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+} from 'reactstrap';
+import { connect } from 'react-redux';
+import { setData } from '../../../common/redux/actions/car';
 
-function SearchSection(props){
-  const [nameCar, setNameCar]= useState('')
-  const [category, setCategory] = useState('')
-  const [isRented, setIsRented] = useState(false)
-  const [price, setPrice] = useState('')
-  const [isSubmitted, setIsSubmited] = useState(false)
-  const [dataDetail, setDataDetail] = useState(null)
+function SearchSection(props) {
+  const [nameCar, setNameCar] = useState('');
+  const [category, setCategory] = useState('');
+  const [isRented, setIsRented] = useState(false);
+  const [price, setPrice] = useState('');
+  const [isSubmitted, setIsSubmited] = useState(false);
+  const [dataDetail, setDataDetail] = useState(null);
 
   // const fetchDataDetail = (id) => {
   //   API.get(`admin/car/${id}`).then((res)=>{
@@ -20,36 +32,36 @@ function SearchSection(props){
   //   }).finally(()=>{
   //   })
   // }
- 
-  const mappingPrice = (price) => {
-    switch(price){
-      case 'low':
-        return 'minPrice=0&maxPrice=400000'
-      case 'medium':
-        return 'minPrice=400000&maxPrice=600000'
-      case 'high':
-        return 'minPrice=600000&maxPrice=1000000'
-      default:
-        return ''
-    }
-  }
 
-  const formatToIDR = (idr) => {
+  const mappingPrice = price => {
+    switch (price) {
+      case 'low':
+        return 'minPrice=0&maxPrice=400000';
+      case 'medium':
+        return 'minPrice=400000&maxPrice=600000';
+      case 'high':
+        return 'minPrice=600000&maxPrice=1000000';
+      default:
+        return '';
+    }
+  };
+
+  const formatToIDR = idr => {
     const parsed = idr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  
+
     return `${'Rp '}${parsed}`;
   };
 
   const handleSubmit = () => {
-    setIsSubmited(true)
+    setIsSubmited(true);
     const parameter = {
       name: nameCar,
       category,
       isRented,
-      price: mappingPrice(price)
-    }
+      price: mappingPrice(price),
+    };
     props.fetchData(parameter);
-  }
+  };
 
   return (
     <Container fluid className="search-card-section">
@@ -59,28 +71,22 @@ function SearchSection(props){
             <Row>
               <Col md={3}>
                 <FormGroup>
-                  <Label 
-                    for="nama" 
-                    className="input-form"
-                  >
+                  <Label for="nama" className="input-form">
                     Nama Mobil
                   </Label>
-                    <Input 
-                      disabled={isSubmitted}
-                      id="nama"
-                      className="input-form"
-                      type="text"
-                      placeholder="Ketik nama/tipe mobil"
-                      onChange={(e) => setNameCar(e.target.value)}
-                    />
+                  <Input
+                    disabled={isSubmitted}
+                    id="nama"
+                    className="input-form"
+                    type="text"
+                    placeholder="Ketik nama/tipe mobil"
+                    onChange={e => setNameCar(e.target.value)}
+                  />
                 </FormGroup>
               </Col>
               <Col md={3}>
                 <FormGroup>
-                  <Label 
-                    for="kapasitas" 
-                    className="input-form"
-                  >
+                  <Label for="kapasitas" className="input-form">
                     Kategori
                   </Label>
                   <Input
@@ -88,16 +94,16 @@ function SearchSection(props){
                     id="kapasitas"
                     name="select"
                     type="select"
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={e => setCategory(e.target.value)}
                   >
-                    <option hidden >Masukkan Kapasitas Mobil</option>
+                    <option hidden>Masukkan Kapasitas Mobil</option>
                     <option className="opt" value="small">
                       2-4 orang
                     </option>
                     <option className="opt" value="medium">
                       4-6 orang
                     </option>
-                    <option className="opt" value="large"> 
+                    <option className="opt" value="large">
                       6-8 orang
                     </option>
                   </Input>
@@ -105,10 +111,7 @@ function SearchSection(props){
               </Col>
               <Col md={3}>
                 <FormGroup>
-                  <Label 
-                    for="harga" 
-                    className="input-form"
-                  >
+                  <Label for="harga" className="input-form">
                     Harga
                   </Label>
                   <Input
@@ -116,9 +119,9 @@ function SearchSection(props){
                     id="harga"
                     name="select"
                     type="select"
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={e => setPrice(e.target.value)}
                   >
-                    <option hidden >Masukkan harga sewa per hari</option>
+                    <option hidden>Masukkan harga sewa per hari</option>
                     <option className="opt" value="low">
                       {`< Rp 400.000`}
                     </option>
@@ -133,10 +136,7 @@ function SearchSection(props){
               </Col>
               <Col md={3}>
                 <FormGroup>
-                  <Label 
-                    for="status" 
-                    className="input-form"
-                  >
+                  <Label for="status" className="input-form">
                     Status
                   </Label>
                   <Input
@@ -144,7 +144,7 @@ function SearchSection(props){
                     id="status"
                     name="select"
                     type="select"
-                    onChange={(e) => setIsRented(e.target.value)}
+                    onChange={e => setIsRented(e.target.value)}
                   >
                     <option className="opt" value={true}>
                       Disewa
@@ -164,12 +164,12 @@ function SearchSection(props){
                 color="info"
                 className="button-submit-search"
                 outline
-                onClick={()=>{
-                  setIsSubmited(false)
-                  setData([])
-                  setDataDetail(null)
+                onClick={() => {
+                  setIsSubmited(false);
+                  setData([]);
+                  setDataDetail(null);
                 }}
-                >
+              >
                 Edit
               </Button>
             ) : (
@@ -186,7 +186,7 @@ function SearchSection(props){
         </Row>
       </section>
 
-      {!dataDetail && 
+      {!dataDetail && (
         <section className="display-car-section">
           {props.dataCars.loading ? (
             <h1>Loading...</h1>
@@ -198,28 +198,21 @@ function SearchSection(props){
                     <Col md={4}>
                       <Card
                         style={{
-                          marginTop:'30px',
+                          marginTop: '30px',
                         }}
                       >
-                        <img
-                          alt={car.name}
-                          src={car.image}
-                        />
+                        <img alt={car.name} src={car.image} />
                         <CardBody>
-                          <CardTitle tag="h5">
-                            {car.name}
-                          </CardTitle>
+                          <CardTitle tag="h5">{car.name}</CardTitle>
+                          <CardText>{formatToIDR(car.price)} / hari</CardText>
                           <CardText>
-                            {formatToIDR(car.price)} / hari
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
                           </CardText>
-                          <CardText>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                          </CardText>
-                          <Button 
-                            color="success" 
-                            style={{width:"100%"}}
-                            onClick={()=>props.fetchDataDetail(car.id)}
+                          <Button
+                            color="success"
+                            style={{ width: '100%' }}
+                            onClick={() => props.fetchDataDetail(car.id)}
                           >
                             Pilih Mobil
                           </Button>
@@ -227,31 +220,31 @@ function SearchSection(props){
                       </Card>
                     </Col>
                   </Fragment>
-                )
+                );
               })}
             </Row>
           )}
         </section>
-      }
+      )}
 
-      {dataDetail && 
-        <section id="detail-car" style={{marginBottom:"100px"}}>
+      {dataDetail && (
+        <section id="detail-car" style={{ marginBottom: '100px' }}>
           <div>Nama mobil: {dataDetail.name}</div>
           {formatToIDR(dataDetail.price)}
         </section>
-      }
+      )}
     </Container>
-  )
+  );
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    fetchData: (params) => dispatch(setData(params))
-  }
-}
+    fetchData: params => dispatch(setData(params)),
+  };
+};
 
 const mapStateToProps = state => ({
-  dataCars: state.cars
-})
+  dataCars: state.cars,
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchSection)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchSection);

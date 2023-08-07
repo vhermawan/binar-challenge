@@ -1,12 +1,10 @@
-import routerList from "./router-list";
-import { RouterProvider } from "react-router-dom";
+import routerList from './router-list';
+import { RouterProvider } from 'react-router-dom';
 
-export default function Routers(){
+export default function Routers() {
   return (
     <>
-      <RouterProvider
-        router={routerList}
-      />
+      <RouterProvider router={routerList} />
     </>
-  )
+  );
 }

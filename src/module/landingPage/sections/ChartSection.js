@@ -10,14 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export const options = {
   responsive: true,
@@ -39,12 +32,12 @@ export const data = {
   datasets: [
     {
       label: 'Dataset 1',
-      data: [100,11,102,32,11,12,12,12,11,19,11,12],
+      data: [100, 11, 102, 32, 11, 12, 12, 12, 11, 19, 11, 12],
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
     {
       label: 'Dataset 2',
-      data: [10,11,102,32,11,12,12,12,11,19,11,12],
+      data: [10, 11, 102, 32, 11, 12, 12, 12, 11, 19, 11, 12],
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],

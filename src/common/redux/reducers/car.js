@@ -1,30 +1,30 @@
-import * as actionType from "../actionsType/car";
+import * as actionType from '../actionsType/car';
 
 const initialState = {
   cars: [],
   idCar: null,
   detailCar: null,
-  loading: false
-}
+  loading: false,
+};
 
-export default function CarReducer(state= initialState, action){
-  switch(action.type){
+export default function CarReducer(state = initialState, action) {
+  switch (action.type) {
     case actionType.START_GET_DATA:
       return {
         ...state,
         loading: true,
-      }
+      };
     case actionType.FINISH_GET_DATA:
       return {
         ...state,
-       loading: false
-      }
+        loading: false,
+      };
     case actionType.SET_DATA:
       return {
         ...state,
-        cars: action.data
-      }
+        cars: action.data,
+      };
     default:
-      return state
+      return state;
   }
 }

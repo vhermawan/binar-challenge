@@ -1,25 +1,24 @@
-import { connect } from "react-redux"
-import React from "react"
-import { actionSetIdUser } from "../../../common/redux/actions/person";
+import { connect } from 'react-redux';
+import React from 'react';
+import { actionSetIdUser } from '../../../common/redux/actions/person';
 
-function Person(props){
-  return(
+function Person(props) {
+  return (
     <>
-      Person 
-      <button onClick={()=>props.setIdUser(1)}>Set ID</button>
+      Person
+      <button onClick={() => props.setIdUser(1)}>Set ID</button>
     </>
-  )
+  );
 }
 
-
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    setIdUser: (payload) => dispatch(actionSetIdUser(payload))
-  }
-}
+    setIdUser: payload => dispatch(actionSetIdUser(payload)),
+  };
+};
 
 const mapStateToProps = state => ({
-  data: state.persons
-})
+  data: state.persons,
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Person)
+export default connect(mapStateToProps, mapDispatchToProps)(Person);

@@ -9,19 +9,19 @@ export const actionFinishGetData = () => ({
   type: actionType.FINISH_GET_DATA,
 });
 
-export const actionSetData = (data) => ({
+export const actionSetData = data => ({
   type: actionType.SET_DATA,
-  data
+  data,
 });
 
-export const setData = (params) => async (dispatch) => {
-  dispatch(actionStartGetData()) //membuat loading jadi true
-  const parameter = `name=${params.name}&category=${params.category}&isRented=${params.isRented}&${params.price}`
+export const setData = params => async dispatch => {
+  dispatch(actionStartGetData()); //membuat loading jadi true
+  const parameter = `name=${params.name}&category=${params.category}&isRented=${params.isRented}&${params.price}`;
   try {
-    const response = await API.get(`admin/v2/car?${parameter}&page=1&pageSize=10`)
-    dispatch(actionSetData(response.data.cars))
+    const response = await API.get(`admin/v2/car?${parameter}&page=1&pageSize=10`);
+    dispatch(actionSetData(response.data.cars));
   } catch (error) {
-    console.error('err', error)
+    console.error('err', error);
   }
-  dispatch(actionFinishGetData()) //membuat loading jadi false
-}
+  dispatch(actionFinishGetData()); //membuat loading jadi false
+};
