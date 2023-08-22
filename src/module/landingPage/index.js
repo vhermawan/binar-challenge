@@ -1,12 +1,12 @@
 import Layout from 'src/components/layout';
 import HeroSection from './sections/HeroSection';
-import GoogleOauthSection from './sections/GoogleOauthSection';
+import GraphqlSection from './sections/GraphqlSection';
 
 export default function Hero() {
   return (
     <Layout>
       <HeroSection />
-      <GoogleOauthSection />
+      <GraphqlSection />
     </Layout>
   );
 }
